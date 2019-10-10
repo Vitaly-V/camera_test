@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -27,15 +26,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _getPicture() {
-    setState(() async {
-      try {
-        File sourceFile = await ImagePicker.pickImage(
-            source: ImageSource.camera, imageQuality: 90);
-      } catch (e) {
-        print(e);
-      }
-    });
+  Future<void> _getPicture() async {
+    try {
+      await ImagePicker.pickImage(source: ImageSource.camera, imageQuality: 90);
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
